@@ -1,0 +1,38 @@
+<VirtualHost *:80>
+    ServerAdmin <email_id_of_admin>
+    ErrorLog <path_to_error_log>
+    DocumentRoot <dmproject_root>
+    ServerName <server_name>
+
+
+   Alias /static <dmproject_path>/static
+   <Directory <dmproject_path>/static>
+        Require all granted
+    </Directory>
+
+   <Directory <dmproject_path>/dmproject>
+        <Files wsgi.py>
+              Require all granted
+        </Files>
+   </Directory>
+
+    WSGIDaemonProcess dmproject python-home=<dmproject_path>/dmproject/<virtual_env_name>  python-path=<dmproject_path>
+    WSGIProcessGroup dmproject
+    WSGIScriptAlias / <dmproject_path>/dmproject/wsgi.py
+
+    OIDCProviderMetadataURL http://<keycloak_server_address>/auth/realms/cfg/.well-known/openid-configuration
+    # OIDCRedirectURI is a vanity URL that must point to a path protected by this module but must NOT point to any content
+    OIDCRedirectURI <redirect_url>
+    OIDCCryptoPassphrase random4321
+    OIDCClientID <client_id>
+    OIDCPassRefreshToken on
+    OIDCPassIDTokenAs serialized
+    OIDCClientSecret <client_secret>
+    OIDCRemoteUserClaim preferred_username
+    OIDCScope "openid email profile"
+   <Location /dmapp/>
+         AuthType openid-connect
+         Require valid-user
+    </Location>
+</VirtualHost>
+

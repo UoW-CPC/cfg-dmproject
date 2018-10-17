@@ -1,0 +1,36 @@
+<!-- homeapp/templates/register.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load static %}
+	<link rel="stylesheet" href="{% static 'css/dmStyle.css' %}">
+        <title>DM User Registration</title>
+    </head>
+    <body>
+        <div id="web_container">
+		<div id="web_header">
+			<h1>Digital Marketplace Test User registration</h1>
+                        <p>This page demonstrates user registration using cfg API. No restrictions are imposed on data entry.</p>
+                        <hr>
+		</div>
+		<div id="web_maincontent">
+ 			<p>User messages</p>
+                        <ol>
+                            {% for key, val in infoDict.items %}
+                                <li> {{key}}: {{val}} </li>
+                            {% endfor %}
+                        </ol>
+                	<form action="/register/" method="post">
+                            {% csrf_token %}
+                            {% for field in form  %}
+                                {{ field.label_tag }} <br>  {{ field }}<br> 
+                            {% endfor %}
+                            <input type="submit" value="Submit">
+                        </form><br>
+                        <a href="/">Go back to home page</a><br>
+		</div>
+	</div>
+    </body>
+</html>
+

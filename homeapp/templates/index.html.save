@@ -1,0 +1,43 @@
+<!-- homeapp/templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/dmStyle.css' %}">
+        <title>DM Test Home</title>
+    </head>
+    <body>
+	div id="web_container">
+		<div id="web_header">
+			<h1>Data Transfer Test Client</h1>
+			<p> This page serves as the home page of data transfer component. This page is not secured and therefore can be seen with (or without) user authentication.</p>
+			<hr>
+		</div>
+		<div id="web_maincontent">
+			<P></p>
+			<a href="/dtApp/dashboard">Login (Or register)</a>
+		</div>
+	</div>
+
+        <h1>Digital Marketplace Test  Home Page</h1>
+	<p>The initial page of the application that may provide general information and/or Login/Register links. This page isn't secure</p>
+	<hr><br>
+	<a href="/dmapp/dashboard/">Login/Register Using OIDC</a><br>
+	<a href="/register/">Register Using cfg API</a>
+	<p>meta: </p>
+	<ol>
+		{% for key, val in metaDict.items %}
+                <li> {{key}}: {{val}}
+		
+		</li>
+		{% endfor %}
+	</ol><br><br>
+	<p>Get: </p>
+        <ol>
+                {% for keyGet, valGet in getDict.items %}
+                <li> {{keyGet}}: {{valGet}}</li>
+                {% endfor %}
+        </ol><br><br>
+    </body>
+</html>

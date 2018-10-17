@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load static %}
+	<link rel="stylesheet" href="{% static 'css/dmStyle.css' %}">
+        <title>DM Dashboard</title>
+    </head>
+    <body>
+        <div id="web_container">
+		<div id="web_header">
+			<h1>Digital Marketplace Test Dashboard ({{userName}})</h1>
+                        <p> This page serves as the dash board of the Digital Marketplace component. This page is secured and can only be opened once user is authenticated.</p>
+        		<hr>
+		</div>
+		<div id="web_maincontent">
+                    <div id="leftcolumn">
+                        <a href=" {{dmLink}} ">Data transfer</a>
+                        <a href="{{logoutLink}}">Logout</a><br>
+                        <h3> User Information (API call):</h3>
+                            <ol>
+                                {% for key, val in userInfoDict.items %}
+                                    <li> {{key}}: {{val}} </li>
+                                {% endfor %}
+                            </ol> 
+                        <h3> Access Token:</h3>
+                        <textarea rows="8" cols="100">{{accessToken}}</textarea>
+                        <h3> ID Token:</h3>
+                        <textarea rows="8" cols="100">{{idToken}}</textarea>
+                        <h3> Refresh Token:</h3>
+                        <textarea rows="6" cols="100">{{refreshToken}}</textarea>
+                           
+                    </div>
+                    <div id="rightcolumn">
+
+                        <h3> Delete an artefact:</h3>
+                        <ol>
+                                {% for key, val in art_op_resp_dict.items %}
+                                    <li> {{key}} - {{val}} </li>
+                                {% endfor %}
+                        </ol>     
+                        <form action="/dmapp/dashboard/" method="post">
+                            {% csrf_token %}
+                            {% for field in form  %}
+                                {{ field.label_tag }} <br>  {{ field }}<br> 
+                            {% endfor %}
+                            <input type="submit" value="Delete Artefact">
+                        </form><br>
+                        <h3> All artefacts:</h3>
+                        <table>
+                            <tr>
+                                <th>Artefact Id</th>
+                                <th>Version</th>
+                                <th>EngineId</th>
+                                <th>GroupId</th>
+                                <th>DownloadUrl</th>
+                            </tr>
+                            {% for art in list_artefacts %}
+                                <tr> 
+                                    <td> {{art.id}} </td>
+                                    <td> {{art.version}}</td>
+                                    <td> {{art.engineid}}</td>
+                                    <td> {{art.groupid}}</td>
+                                    <td> <a href =" {{art.downloadurl}} "> Download </a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>    
+                    </div>
+           </div>
+	</div>
+    </body>
+</html>

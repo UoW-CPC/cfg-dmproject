@@ -1,0 +1,29 @@
+<!-- homeapp/templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+    </head>
+    <body>
+        <h1>Register user</h1>
+        <p>This page demonstrates the user registration process using cfg Rest API. No restrictions are imposed on data entry.</p>
+        <hr><br>
+        ref="/register/">Register Using cfg API</a>
+        <p>meta: </p>
+        <ol>
+                {% for key, val in metaDict.items %}
+                <li> {{key}}: {{val}}
+
+                </li>
+                {% endfor %}
+        </ol><br><br>
+        <p>Get: </p>
+        <ol>
+                {% for keyGet, valGet in getDict.items %}
+                <li> {{keyGet}}: {{valGet}}</li>
+                {% endfor %}
+        </ol><br><br>
+    </body>
+</html>
+

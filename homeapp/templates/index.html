@@ -1,0 +1,24 @@
+<!-- homeapp/templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/dmStyle.css' %}">
+        <title>DM Test Home</title>
+    </head>
+    <body>
+	<div id="web_container">
+		<div id="web_header">
+			<h1>Digital Marketplace Test  Home Page</h1>
+		        <p>The initial page of the application that may provide general information and Login/Register links. This page isn't secure</p>
+        		<hr>
+		</div>
+		<div id="web_maincontent">
+			<p> {{c_a}}</p>
+ 			<a href="/dmapp/dashboard/">Login/Register Using OIDC Provider</a><br>
+		        <a href="/register/">Register Using cfg API</a>
+		</div>
+	</div>
+    </body>
+</html>

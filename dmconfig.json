@@ -1,0 +1,11 @@
+{
+  "DEFAULT": 
+  {
+    "CLIENT_ID" : "cliend_id",
+    "CLIENT_SECRET" : "client_secret",
+    "API_BASE_URL" : "url_of_cfgum_api",
+    "DT_URL" : "http://<server_name_of_dt_test_application>/dtApp/dashboard?token=",
+    "REPO_API_BASE_URL" : "http://<ip_address_of_repo_api>/service/rest/v1",
+    "REPOSITORY" : "cfg-repo"  
+  }
+}
