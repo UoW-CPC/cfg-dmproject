@@ -1,4 +1,4 @@
-# dmproject
+# dmproject (digital marketplace)
 
 This project is a test application that mimic as the Digital Marketplace component of CFG. The application demonstrates the integration of CFGUM using Python based Django framework. 
 
