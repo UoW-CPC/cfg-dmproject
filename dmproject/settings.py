@@ -25,7 +25,7 @@ SECRET_KEY = 'c(dzl^@f8f0w1j_g0_!udev=-4os8x7jw=+b&qbbpfi1x+zy$i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost","dmlogin.cpc.uow","dmapp.cfg.cpc.uow","127.0.0.1","127.0.1.1"]
+ALLOWED_HOSTS = ["localhost","127.0.0.1","127.0.1.1"]
 
 
 # Application definition

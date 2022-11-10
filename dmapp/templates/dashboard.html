@@ -9,27 +9,19 @@
     <body>
         <div id="web_container">
 		<div id="web_header">
-			<h1>Digital Marketplace Test Dashboard ({{userName}})</h1>
-                        <p> This page serves as the dash board of the Digital Marketplace component. This page is secured and can only be opened once user is authenticated.</p>
+			<h1>Test Dashboard ({{userName}})</h1>
+                        <p> This page serves as a test dash board. This page is secured and can only be opened once user is authenticated.</p>
         		<hr>
 		</div>
 		<div id="web_maincontent">
                     <div id="leftcolumn">
-                        <a href=" {{dmLink}} ">Data transfer</a>
                         <a href="{{logoutLink}}">Logout</a><br>
-                        <h3> User Information (API call):</h3>
+                        <h3> Meta Information:</h3>
                             <ol>
-                                {% for key, val in userInfoDict.items %}
+                                {% for key, val in request.META.items %}
                                     <li> {{key}}: {{val}} </li>
                                 {% endfor %}
-                            </ol> 
-                        <h3> Access Token:</h3>
-                        <textarea rows="8" cols="100">{{accessToken}}</textarea>
-                        <h3> ID Token:</h3>
-                        <textarea rows="8" cols="100">{{idToken}}</textarea>
-                        <h3> Refresh Token:</h3>
-                        <textarea rows="6" cols="100">{{refreshToken}}</textarea>
-                           
+                            </ol>
                     </div>
                     <div id="rightcolumn">
 

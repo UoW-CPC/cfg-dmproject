@@ -29,36 +29,19 @@ class DMDashboardPageView(TemplateView):
         # Obtain the necessary information from request meta
         url_scheme = request.META['REQUEST_SCHEME']
         url_server_name = request.META['SERVER_NAME']
-        access_token = request.META['OIDC_access_token']
-        id_token = request.META['OIDC_id_token']
-        refresh_token = request.META['OIDC_refresh_token']
-
-        user_name = request.META['OIDC_CLAIM_preferred_username']
-        dm_link = DT_URL + access_token
+        #access_token = request.META['OIDC_access_token']
+        #id_token = request.META['OIDC_id_token']
+        #refresh_token = request.META['OIDC_refresh_token']
 
         # Compose logout Link        
         logout_link = url_scheme + "://" + url_server_name + "/dmapp/redirect_uri?logout=" + url_scheme + "://" + url_server_name
-        
-
-        # call /userinfo/ CFGUM API.
-        api_URL = API_BASE_URL + '/userinfo/' + access_token + '?client_id=' + CLIENT_ID + '&CLIENT_SECRET=' + CLIENT_SECRET
-        user_info_dict = self.call_userinfo(api_URL)
-       
-        # call /artefacts/ REPO API.
-        list_artefacts = self.call_listartefacts()
-
-        # Check, if url contains query string params {There will querystring parameters, when the user wants to delete an artefact.}
-        art_op_resp_dict={}
-        if 'status_code' in request.GET and 'message' in request.GET:
-            art_op_resp_dict={'status_code':request.GET['status_code'],'message':request.GET['message']}
-
-        form = ArtefactForm()
 
         # Prepare context.
-        c={'form': form,'accessToken': access_token,'idToken': id_token,'refreshToken': refresh_token,
-        'userName':user_name,'dmLink':dm_link,'userInfoDict': user_info_dict,'logoutLink': logout_link,
-        'list_artefacts':list_artefacts,'art_op_resp_dict':art_op_resp_dict}
+        c={'logoutLink': logout_link}
         return render(request, 'dashboard.html', context=c)
+        #user_name = request.META['OIDC_CLAIM_preferred_username']
+        #dm_link = DT_URL + access_token
+
 
     def post(self, request, **kwargs):
         access_token = request.META['OIDC_access_token']
